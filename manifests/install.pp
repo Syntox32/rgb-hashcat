@@ -4,15 +4,13 @@
 # Installs hashcat. Calls different subclasses depending on OS.
 #
 class hashcat::install(
-  Variant[Enum['universe'],Struct[{ppa => String, id => String, keyserver => String}]] $provider = {
-    ppa          => 'ppa:ntnu-rgb/ppa',
-    fingerprint  => '470D3776F3131403C8680C7296FEB24BFAD547F7',
-    keyserver    => 'keyserver.ubuntu.com',
-  },
+  Variant[Enum['universe', 'github'],Struct[{ppa => String, id => String, keyserver => String}]] $provider = 'github',
+	$install_path = '/opt/hashcat',
 ) {
   if $::facts['os']['name'] == 'Ubuntu' {
     class { 'hashcat::install::ubuntu':
-      provider => $provider
+      provider => $provider,
+			install_path => $install_path,
     }
   }
   elsif $::facts['os']['name'] == 'windows' {
