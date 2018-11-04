@@ -19,7 +19,6 @@ Facter.add(:cpu_vendor) do
     setcode do
       'Intel'
     end
-  end
   else
     setcode do                                  # Returns nothing if the name does not include Intel or AMD
       'Error, CPU vendor not detected'
