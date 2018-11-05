@@ -1,10 +1,10 @@
 # 
 # Retrieve a link to the latest compressed archive on github
 # 
-# @return A string with the name of the GPU vendor. 
+# @return A link to the latest compressed archive from the official hashcat github
 #
-# Returns an empty string if no GPU is detected or the vendor is not recognized. 
-# If it outputs something else than 'NVIDIA', 'AMD' or '', an error occured.
+# This facter uses the github API to retrieve the latest compressed archive with 
+# binaries from the official hashcat repositories.
 #
 require 'net/http'
 require 'json'
