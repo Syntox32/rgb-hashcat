@@ -63,9 +63,15 @@ Hashcat requires the following versions of the different types of drivers:
 
 ### Install Hashcat
 **Install hashcat with default parameters:**
+By default this will use `github` as default provider. The two examples bellow are eqivalent. GitHub as a provider does not work on Windows yet.
 
 ```
 include hashcat
+```
+```
+class { 'hashcat':
+   provider => 'github',
+}
 ```
 
 **Specify processor, NVIDIA driver version and provider using hiera:**
@@ -110,16 +116,9 @@ Note that hashcat is not available in the Ubuntu Universe repository for Ubuntu 
 
 * **provider**
   * Specify the package provider for the hashcat package.
-  * Possible values are a PPA hash or `'universe'`.
+  * Possible values are a PPA hash, `'github'` or `'universe'`.
   * Note that as of writing this module hashcat is not available in official Ubuntu repositories for Ubuntu 16.04
-  * The default value is: 
-```
-{
-  ppa       => 'ppa:ntnu-rgb/ppa',
-  id        => '470D3776F3131403C8680C7296FEB24BFAD547F7',
-  keyserver => 'keyserver.ubuntu.com',
-}
-```
+  * The default value is: `github`
 
 ### Further reading
 + Hashcat's webpage: <https://hashcat.net/hashcat/>
@@ -135,7 +134,7 @@ The module is compatible with:
 **OS:**
 
 + Ubuntu 14.04, Ubuntu 16.04
-+ Windows Windows 7, Windows 8, Windows 10, Windows Server 2016 
++ Windows Windows 7, Windows 8, Windows 10, Windows Server 2016 (GitHub binaries do not work on Windows yet)
 
 **Hardware:**
 
